@@ -1,0 +1,12 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../../Common";
+
+@mixin transform($transform) {
+  @include prefix(transform, $transform, -o, -ms, -moz, -webkit, official);
+}

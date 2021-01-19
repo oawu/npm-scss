@@ -1,0 +1,15 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@function color-stops($item1, $item2: null, $item3: null, $item4: null, $item5: null, $item6: null, $item7: null, $item8: null, $item9: null) {
+  $items: $item2, $item3, $item4, $item5, $item6, $item7, $item8, $item9;
+  $full: $item1;
+  @each $item in $items {
+    @if $item != null { $full: $full, $item; }
+  }
+  @return $full;
+}

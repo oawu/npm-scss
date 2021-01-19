@@ -1,0 +1,32 @@
+{
+  "name": "@oawu/scss",
+  "version": "1.0.0",
+  "description": "OA's Node scss 轉換工具 📝",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comdan66/node-Scss.git"
+  },
+  "keywords": [
+    "scss",
+    "sass",
+    "node-sass",
+    "css"
+  ],
+  "author": {
+    "name": "OA Wu",
+    "email": "comdan66@gmail.com",
+    "url": "https://www.ioa.tw"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/comdan66/node-Scss/issues"
+  },
+  "homepage": "https://github.com/comdan66/node-Scss#readme",
+  "dependencies": {
+    "sass": "^1.32.4"
+  }
+}

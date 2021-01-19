@@ -1,0 +1,17 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../Common";
+
+@mixin word-break($value: normal){
+  @if $value == break-all {
+    @include prefix(word-break, $value,     not(-o),     -ms,  not(-moz), not(-webkit), official);
+    @include prefix(word-break, break-word, not(-o), not(-ms), not(-moz), not(-webkit), official);
+  } @else {
+    @include prefix(word-break, $value, not(-o), -ms, not(-moz), not(-webkit), official);
+  }
+}

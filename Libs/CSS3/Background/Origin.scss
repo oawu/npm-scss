@@ -1,0 +1,28 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../../Common";
+
+@mixin background-origin($origin: content-box) {
+  $origin    : unquote($origin);
+  $deprecated: $origin;
+
+  @if $origin == padding-box {
+    $deprecated: padding;
+  }
+
+  @if $origin == border-box  {
+    $deprecated: border; 
+  }
+
+  @if $origin == content-box {
+    $deprecated: content;
+  }
+
+  @include prefix(background-origin, $deprecated, not(-o), not(-ms),    -moz,      -webkit, not(official));
+  @include prefix(background-origin, $origin,         -o,      -ms, not(-moz), not(-webkit),    official);
+}

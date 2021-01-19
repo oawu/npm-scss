@@ -1,0 +1,18 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../../Common";
+
+@mixin flexbox($vals) {
+  @each $prop, $val in $vals {
+    @if $prop == display {
+      @include suffix(display, $val, not(-o), not(-ms), not(-moz), -webkit, official);
+    } @else {
+      @include prefix($prop, $val, not(-o), not(-ms), not(-moz), -webkit, official);
+    }
+  }
+}

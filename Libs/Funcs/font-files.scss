@@ -1,0 +1,24 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "str-last-index";
+
+$formats: (svg: 'svg', woff: 'woff', woff2: 'woff2', otf: 'opentype', ttf: 'truetype', opentype: 'opentype', truetype: 'truetype', eot: 'embedded-opentype') !default;
+
+@function font-files($files...) {
+  $vals: commaList();
+
+  @each $file in $files {
+    $ext   : str-slice($file, str-last-index($file, '.') + 1);
+    $format: map-get($formats, $ext);
+
+    @if ($ext == 'eot') { $vals: append($vals, compact(url(quote($file + '?' + unique-id() + '#iefix')) if($format, format(quote($format)), null))); }
+    @else { $vals: append($vals, compact(url(quote($file + '?' + unique-id())) if($format, format(quote($format)), null))); }
+  }
+
+  @return compact($vals);
+}

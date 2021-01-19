@@ -1,0 +1,24 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../../Common";
+
+@mixin background-clip($clip: padding-box) {
+  $clip      : unquote($clip);
+  $deprecated: $clip;
+
+  @if $clip == padding-box {
+    $deprecated: padding;
+  }
+
+  @if $clip == border-box {
+    $deprecated: border;
+  }
+
+  @include prefix(background-clip, $deprecated, not(-o), not(-ms),     -moz,      -webkit, not(official));
+  @include prefix(background-clip, $clip,       not(-o), not(-ms), not(-moz), not(-webkit),    official);
+}

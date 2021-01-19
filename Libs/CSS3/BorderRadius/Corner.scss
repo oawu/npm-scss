@@ -1,0 +1,13 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../../Common";
+
+@mixin border-corner-radius($vert, $horz, $radius) {
+  @include prefix("border-radius-#{$vert}#{$horz}", $radius, not(-o), not(-ms), -moz, not(-webkit), not(official));
+  @include prefix("border-#{$vert}-#{$horz}-radius", $radius, not(-o), not(-ms), not(-moz), -webkit, official);
+}

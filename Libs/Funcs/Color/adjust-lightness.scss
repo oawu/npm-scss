@@ -1,0 +1,10 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@function adjust-lightness($color, $amount) {
+  @return adjust-color($color, $lightness: $amount);
+}

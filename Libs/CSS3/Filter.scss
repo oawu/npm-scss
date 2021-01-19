@@ -1,0 +1,14 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../Common";
+
+@mixin filter($filters...) {
+  @if length($filters) > 0 {
+    @include prefix(filter, compact($filters...), not(-o), not(-ms), -moz, -webkit, official);
+  }
+}

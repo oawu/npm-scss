@@ -1,0 +1,12 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../../Common";
+
+@mixin transition-timing-function($function, $functions...) {
+  @include prefix(transition-timing-function, compact(if(type-of($duration) == string, unquote($function), $function), $functions...), -o, not(-ms), -moz, -webkit, official);
+}

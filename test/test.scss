@@ -1,0 +1,31 @@
+
+@import "Lalilo";
+
+// @include font-face("icon", font-files(
+//   "icomoon/fonts/icomoon.eot",
+//   "icomoon/fonts/icomoon.woff",
+//   "icomoon/fonts/icomoon.ttf",
+//   "icomoon/fonts/icomoon.svg"));
+
+a {
+  @include animation(rotate 5s linear);
+  // @include background-image(linear-gradient(rgba(184, 241, 148, 1.00) 0%, rgba(89, 178, 169, 1.00) 100%));
+  @include box-shadow(none);
+  @include box-shadow(1px 1px 1px rgba(1, 2, 3, 1), inset 1px 1px 1px rgba(1, 2, 3, 1));
+  @include border-top-left-radius(20px);
+  @include transition(transform .3s cubic-bezier(.12, .4, .29, 1.45), opacity .13s);
+  @include transform(translateX(-50%) scale(1));
+}
+
+* {
+  &, &:after, &:before {
+    vertical-align: top;
+    @include box-sizing(border-box);
+    @include font-smoothing(subpixel-antialiased);
+  }
+}
+
+@include keyframes(rotate) {
+  0% { @include rotate(0); }
+  100% { @include rotate(360deg); }
+}

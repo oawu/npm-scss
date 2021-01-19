@@ -1,0 +1,26 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@function prefixed-for-trans($prefix, $property) {
+  @if type-of($property) == list {
+    $news: commaList();
+
+    @each $v in $property {
+      $news: append($news, prefixed-for-trans($prefix, $v));
+    }
+
+    @return $news;
+  }
+
+  $values: transform, transform-origin;
+
+  @if index($values, $property) {
+    @return #{$prefix}-#{$property};
+  } @else {
+    @return $property;
+  }
+}

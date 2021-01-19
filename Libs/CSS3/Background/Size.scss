@@ -1,0 +1,12 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../../Common";
+
+@mixin background-size($size1: 100% auto, $sizes...) {
+  @include prefix(background-size, compact(if(type-of($size1) == string, unquote($size1), $size1), $sizes...), -o, not(-ms), -moz, -webkit, official);
+}

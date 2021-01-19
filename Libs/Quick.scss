@@ -1,0 +1,320 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@function commaList($list: ()) {
+  @return join((), $list, comma);
+}
+
+@function compact($vars...) {
+  $list     : ();
+  $separator: list-separator($vars);
+
+  @each $var in $vars {
+    @if $var {
+      $list: append($list, $var, $separator);
+    }
+  }
+
+  @return $list;
+}
+
+@mixin prefix($property, $value, $o: true, $ms: true, $moz: true, $webkit: true, $official: true) {
+  @if $webkit   { -webkit-#{$property}: $value; }
+  @if $moz      {    -moz-#{$property}: $value; }
+  @if $ms       {     -ms-#{$property}: $value; }
+  @if $o        {      -o-#{$property}: $value; }
+  @if $official {         #{$property}: $value; }
+}
+
+@mixin suffix($property, $value, $o: true, $ms: true, $moz: true, $webkit: true, $official: true) {
+  @if $webkit   { #{$property}: -webkit-#{$value}; }
+  @if $moz      { #{$property}:    -moz-#{$value}; }
+  @if $ms       { #{$property}:     -ms-#{$value}; }
+  @if $o        { #{$property}:      -o-#{$value}; }
+  @if $official { #{$property}:         #{$value}; }
+}
+
+@function adjust-lightness($color, $amount) {
+  @return adjust-color($color, $lightness: $amount);
+}
+
+@mixin border-radius($radius) {
+  @include prefix(border-radius, $radius);
+}
+
+@mixin border-corner-radius($vert, $horz, $radius) {
+  @include prefix("border-radius-#{$vert}#{$horz}", $radius, not(-o), not(-ms), -moz, not(-webkit), not(official));
+  @include prefix("border-#{$vert}-#{$horz}-radius", $radius, not(-o), not(-ms), not(-moz), -webkit, official);
+}
+
+@mixin border-top-radius($radius) {
+  @include border-corner-radius(top, left, $radius);
+  @include border-corner-radius(top, right, $radius);
+}
+
+@mixin border-bottom-radius($radius) {
+  @include border-corner-radius(bottom, left, $radius);
+  @include border-corner-radius(bottom, right, $radius);
+}
+
+@mixin border-left-radius($radius) {
+  @include border-corner-radius(top, left, $radius);
+  @include border-corner-radius(bottom, left, $radius);
+}
+
+@mixin border-right-radius($radius) {
+  @include border-corner-radius(top, right, $radius);
+  @include border-corner-radius(bottom, right, $radius);
+}
+
+@mixin border-top-left-radius($radius) {
+  @include border-corner-radius(top, left, $radius);
+}
+
+@mixin border-top-right-radius($radius) {
+  @include border-corner-radius(top, right, $radius);
+}
+
+@mixin border-bottom-left-radius($radius) {
+  @include border-corner-radius(bottom, left, $radius);
+}
+
+@mixin border-bottom-right-radius($radius) {
+  @include border-corner-radius(bottom, right, $radius);
+}
+
+@mixin box-shadow($shadows...) {
+  @if length($shadows) > 0 {
+    @include prefix(box-shadow, compact($shadows...), not(-o), not(-ms), -moz, -webkit, official);
+  }
+}
+
+@mixin box-sizing($bs) {
+  @include prefix(box-sizing, unquote($bs), not(-o), not(-ms), -moz, -webkit, official);
+}
+
+@mixin filter($filters...) {
+  @if length($filters) > 0 {
+    @include prefix(filter, compact($filters...), not(-o), not(-ms), -moz, -webkit, official);
+  }
+}
+
+@mixin input-placeholder {
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+@mixin opacity($opacity) {
+  filter: unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=#{round($opacity * 100)})");
+  opacity: $opacity;
+}
+
+@mixin range-width($min: 0, $max: 0) {
+  @if $max == 0 {
+    @media screen and (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $max - 1px) and (min-width: $min) {
+      @content;
+    }
+  }
+}
+
+@mixin range-height($min: 0, $max: 0) {
+  @if $max == 0 {
+    @media screen and (min-height: $min) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-height: $max - 1px) and (min-height: $min) {
+      @content;
+    }
+  }
+}
+
+@mixin overflow-docx3() {
+  text-overflow: ellipsis;
+    white-space: nowrap;
+       overflow: hidden;
+}
+
+@mixin text-shadow($sws...) {
+  $withoutSpread: commaList();
+  $shadows      : commaList();
+  $hasSpread    : false;
+
+  @each $shadow in compact($sws...) {
+    @if length($shadow) > 4 {
+      $hasSpread    : true;
+      $withoutSpread: append($withoutSpread, nth($shadow,1) nth($shadow,2) nth($shadow,3) nth($shadow,5));
+      $shadows      : append($shadows, $shadow);
+    } @else {
+      $withoutSpread: append($withoutSpread, $shadow);
+      $shadows      : append($shadows, $shadow);
+    }
+  }
+
+  @if $hasSpread {
+    text-shadow: $withoutSpread;
+  }
+
+  text-shadow: $shadows;
+}
+
+@mixin font-smoothing($val) {
+  @include prefix(font-smoothing, $val);
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} { @content; }
+     @-moz-keyframes #{$name} { @content; }
+       @-o-keyframes #{$name} { @content; }
+      @-ms-keyframes #{$name} { @content; }
+          @keyframes #{$name} { @content; }
+}
+
+@mixin animation($animations...) {
+  @include prefix(animation, compact($animations...), -o, -ms, -moz, -webkit, official);
+}
+
+@mixin perspective($p) {
+  @include prefix(perspective, $p, -o, -ms, -moz, -webkit, official);
+}
+
+@mixin transform($transform) {
+  @include prefix(transform, $transform, -o, -ms, -moz, -webkit, official);
+}
+
+@mixin translateX($x, $perspective: false) {
+  $trans: translateX($x);
+  @include transform(if($perspective, perspective($perspective) $trans, $trans));
+}
+
+@mixin translateY($y, $perspective: false) {
+  $trans: translateY($y);
+  @include transform(if($perspective, perspective($perspective) $trans, $trans));
+}
+
+@mixin scale($x, $y: $x, $perspective: false) {
+  $trans: scale($x, $y);
+  @include transform(if($perspective, perspective($perspective) $trans, $trans));
+}
+
+@mixin rotate($deg, $perspective: false) {
+  $trans: rotate($deg);
+  @include transform(if($perspective, perspective($perspective) $trans, $trans));
+}
+
+@mixin transition-delay($delay, $delays...) {
+  @include prefix(transition-delay, compact(if(type-of($delay) == string, unquote($delay), $delay), $delays...), -o, not(-ms), -moz, -webkit, official);
+}
+
+@function is-time($value) {
+  @if type-of($value) == number {
+    @return not(not(index(s ms, unit($value))));
+  } @else {
+    @return false;
+  }
+}
+
+@function prefixed-for-trans($prefix, $property) {
+  @if type-of($property) == list {
+    $news: commaList();
+
+    @each $v in $property {
+      $news: append($news, prefixed-for-trans($prefix, $v));
+    }
+
+    @return $news;
+  }
+
+  $values: transform, transform-origin;
+
+  @if index($values, $property) {
+    @return #{$prefix}-#{$property};
+  } @else {
+    @return $property;
+  }
+}
+
+@mixin transition($transitions...) {
+  $hasDelays  : false;
+  $delays     : commaList();
+
+  $oValue     : commaList();
+  $mozValue   : commaList();
+  $webkitValue: commaList();
+
+  @each $transition in $transitions {
+    $property  : nth($transition, 1);
+    $duration  : false;
+    $timingFunc: false;
+    $delay     : false;
+
+    @if length($transition) > 1 {
+      $duration: nth($transition, 2);
+    }
+
+    @if length($transition) > 2 {
+      $timingFunc: nth($transition, 3);
+    }
+
+    @if length($transition) > 3 {
+      $delay    : nth($transition, 4);
+      $hasDelays: true;
+    }
+
+    @if is-time($timingFunc) and not($delay) {
+      $timingFunc: false;
+      $delay     : $timingFunc;
+      $hasDelays : true;
+    }
+
+    $delays: append($delays, if($delay, $delay, 0s));
+
+    $webkitValue: append($webkitValue, compact((prefixed-for-trans(-webkit, $property) $duration $timingFunc)...));
+       $mozValue: append($mozValue,    compact((prefixed-for-trans(-moz,    $property) $duration $timingFunc $delay)...));
+         $oValue: append($oValue,      compact((prefixed-for-trans(-o,      $property) $duration $timingFunc $delay)...));
+  }
+
+  -webkit-transition: $webkitValue;
+     -moz-transition: $mozValue;
+       -o-transition: $oValue;
+          transition: $transitions;
+
+  @if $hasDelays {
+    -webkit-transition-delay: $delays;
+  }
+}
+
+@mixin user-select($select) {
+  @include prefix(user-select, unquote($select), not(-o), -ms, -moz, -webkit, official);
+}
+
+@mixin word-break($value: normal){
+  @if $value == break-all {
+    @include prefix(word-break, $value,     not(-o),     -ms,  not(-moz), not(-webkit), official);
+    @include prefix(word-break, break-word, not(-o), not(-ms), not(-moz), not(-webkit), official);
+  } @else {
+    @include prefix(word-break, $value, not(-o), -ms, not(-moz), not(-webkit), official);
+  }
+}
+

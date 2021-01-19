@@ -1,0 +1,61 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "../../Common";
+@import "../../Funcs/is-time";
+@import "../../Funcs/prefixed-for-trans";
+
+@mixin transition($transitions...) {
+  $hasDelays  : false;
+  $delays     : commaList();
+
+  $oValue     : commaList();
+  $mozValue   : commaList();
+  $webkitValue: commaList();
+
+  @each $transition in $transitions {
+    $property  : nth($transition, 1);
+    $duration  : false;
+    $timingFunc: false;
+    $delay     : false;
+
+    @if length($transition) > 1 {
+      $duration: nth($transition, 2);
+    }
+
+    @if length($transition) > 2 {
+      $timingFunc: nth($transition, 3);
+    }
+
+    @if length($transition) > 3 {
+      $delay    : nth($transition, 4);
+      $hasDelays: true;
+    }
+
+    @if is-time($timingFunc) and not($delay) {
+      $timingFunc: false;
+      $delay     : $timingFunc;
+      $hasDelays : true;
+    }
+
+    $delays: append($delays, if($delay, $delay, 0s));
+
+    $webkitValue: append($webkitValue, compact((prefixed-for-trans(-webkit, $property) $duration $timingFunc)...));
+       $mozValue: append($mozValue,    compact((prefixed-for-trans(-moz,    $property) $duration $timingFunc $delay)...));
+         $oValue: append($oValue,      compact((prefixed-for-trans(-o,      $property) $duration $timingFunc $delay)...));
+  }
+
+  -webkit-transition: $webkitValue;
+     -moz-transition: $mozValue;
+       -o-transition: $oValue;
+          transition: $transitions;
+
+  @if $hasDelays {
+    -webkit-transition-delay: $delays;
+  }
+}
+
