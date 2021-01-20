@@ -12,8 +12,8 @@ const files      = new Map()
 
 function Scss(type, done) {
   return sass.render({ ...type, outputStyle: Scss.minify ? 'compressed' : 'expanded', importer: Scss.importer }, (error, result) => {
-    if (error) error.lines = error.formatted.split("\n"), error.message = error.lines.shift().trim(), error.info = error.lines.pop().split(error.line + ':' + error.column).shift().trim()
-    done && done(error, result)
+    if (!done) return
+    else return error && (error.message = error.formatted.split("\n").shift().trim()), done(error, result)
   })
 }
 
