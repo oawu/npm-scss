@@ -8,14 +8,14 @@
 const sass       = require('sass')
 const Path       = require('path')
 const FileSystem = require('fs')
-const files      = new Map()
+const files      = []
 
 function Scss(type, done) {
   return sass.render({ ...type, outputStyle: Scss.minify ? 'compressed' : 'expanded', importer: Scss.importer }, (error, result) => {
     if (!done) return
 
     error && (error.info = error.formatted.split("\n").shift())
-    result.utf8 = (Scss.minify ? '@charset "UTF-8";' + "\n" : '') + result.css.toString()
+    error || (result.utf8 = (Scss.minify ? '@charset "UTF-8";' + "\n" : '') + result.css.toString())
 
     return done(error, result)
   })
@@ -41,16 +41,16 @@ Scss.importer = (url, file, done) => {
     if (file = __dirname + Path.sep + 'Libs' + Path.sep, tokens.length)
       file += tokens.join(Path.sep)
     else
-      file += '@'
+      file += Scss.key
   else
     file = Path.dirname(file) + Path.sep + url
 
-  return Path.extname(file) !== '.scss' && (file += '.scss'),
-    FileSystem.existsSync(file)
-      ? files.has(file)
-        ? { contents }
-        : (files.set(file), { file })
-      : new Error('@import 的 "' + url + '" 不存在！')
+  if (Path.extname(file) !== '.scss' && (file += '.scss'), files.includes(file))
+    return { file }
+  else if (!FileSystem.existsSync(file))
+    return new Error('@import 的 "' + url + '" 不存在！')
+  else
+    return files.push(file), { file }
 }
 
 Scss.file = (file, done) => Scss({ file }, done)
