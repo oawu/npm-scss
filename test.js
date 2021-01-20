@@ -8,8 +8,6 @@
 const Scss = require('./index.js')
 const FileSystem = require('fs')
 
-Scss.quick  = true
-
 Scss('test/test.scss', result => {
   console.error(result.stats.duration);
 
