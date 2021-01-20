@@ -5,7 +5,7 @@
 // @link        https://www.ioa.tw/
 //
 
-@import "../Common";
+@import "../../Common";
 
 @mixin text-shadow($sws...) {
   $withoutSpread: commaList();

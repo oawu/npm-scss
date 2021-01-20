@@ -1,0 +1,13 @@
+//
+// @author      OA Wu <comdan66@gmail.com>
+// @copyright   Copyright (c) 2015 - 2021, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@import "brightness";
+
+@function contrast-color($color, $dark: black, $light: white) {
+  $colorBrightness: brightness($color);
+  @return if(abs($colorBrightness - brightness($light)) > abs($colorBrightness - brightness($dark)), $light, $dark);
+}

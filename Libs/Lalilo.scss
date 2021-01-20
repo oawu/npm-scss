@@ -22,6 +22,20 @@
   @return $list;
 }
 
+@function adjust-lightness($color, $amount) {
+  @return adjust-color($color, $lightness: $amount);
+}
+
+@function brightness($color) {
+  @if type-of($color) == color { @return (red($color) * 0.299 + green($color) * 0.587 + blue($color) * 0.114) / 255 * 100%; }
+  @else { @return unquote("brightness(#{$color})"); }
+}
+
+@function contrast-color($color, $dark: black, $light: white) {
+  $colorBrightness: brightness($color);
+  @return if(abs($colorBrightness - brightness($light)) > abs($colorBrightness - brightness($dark)), $light, $dark);
+}
+
 @mixin prefix($property, $value, $o: true, $ms: true, $moz: true, $webkit: true, $official: true) {
   @if $webkit   { -webkit-#{$property}: $value; }
   @if $moz      {    -moz-#{$property}: $value; }
@@ -36,10 +50,6 @@
   @if $ms       { #{$property}:     -ms-#{$value}; }
   @if $o        { #{$property}:      -o-#{$value}; }
   @if $official { #{$property}:         #{$value}; }
-}
-
-@function adjust-lightness($color, $amount) {
-  @return adjust-color($color, $lightness: $amount);
 }
 
 @mixin border-radius($radius) {
@@ -154,6 +164,14 @@
   text-overflow: ellipsis;
     white-space: nowrap;
        overflow: hidden;
+}
+
+@mixin selection($backgroundColor, $color: contrast-color($backgroundColor)) {
+  &::-webkit-selection { color: $color; background-color: $backgroundColor; }
+  &::-moz-selection { color: $color; background-color: $backgroundColor; }
+  &::-ms-selection { color: $color; background-color: $backgroundColor; }
+  &::-o-selection { color: $color; background-color: $backgroundColor; }
+  &::selection { color: $color; background-color: $backgroundColor; }
 }
 
 @mixin text-shadow($sws...) {
