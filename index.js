@@ -43,7 +43,7 @@ Scss.importer = (url, file, done) => {
       ? files.has(file)
         ? { contents }
         : (files.set(file), { file })
-      : new Error('@import 的 ' + url + ' 不存在！')
+      : new Error('@import 的 "' + url + '" 不存在！')
 }
 
 Scss.file = (file, done) => Scss({ file }, done)
