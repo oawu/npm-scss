@@ -21,17 +21,13 @@ npm install @oawu/scss
 
   const SCSS = require('@oawu/scss')
 
-  SCSS.file('/paths.../some.scss', result => {
+  SCSS.file('/paths.../some.scss', (error, result) => {
     // done..
-  }, error => {
-    // fail..
   })
 
   // or
-  SCSS.data('$w: 100px; div { width: $w; }', result => {
+  SCSS.data('$w: 100px; div { width: $w; }', (error, result) => {
     // done..
-  }, error => {
-    // fail..
   })
 
 ```
