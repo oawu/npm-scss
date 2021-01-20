@@ -1,6 +1,6 @@
 {
   "name": "@oawu/scss",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OA's Node scss 轉換工具 📝",
   "main": "index.js",
   "scripts": {
