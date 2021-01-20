@@ -10,12 +10,12 @@ const Path       = require('path')
 const FileSystem = require('fs')
 const files      = new Map()
 
-function Scss(file, done, fail) {
+function Scss(type, done, fail) {
   const outputStyle = Scss.minify ? 'compressed' : 'expanded'
 
   const finish = (error, result) => error ? fail(error) : done(result)
 
-  return sass.render({ file, outputStyle, importer: Scss.importer }, finish)
+  return sass.render({ ...type, outputStyle, importer: Scss.importer }, finish)
 }
 
 Scss.minify = true
@@ -49,5 +49,8 @@ Scss.importer = (url, file, done) => {
         : (files.set(file), { file })
       : new Error('@import 的 ' + url + ' 不存在！')
 }
+
+Scss.file = file => Scss({ file })
+Scss.data = data => Scss({ data })
 
 module.exports = Scss

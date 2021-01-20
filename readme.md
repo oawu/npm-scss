@@ -19,9 +19,16 @@ npm install @oawu/scss
 
 ```javascript
 
-  const Scss = require('@oawu/scss')
+  const SCSS = require('@oawu/scss')
 
-  Scss('/paths.../some.scss', result => {
+  SCSS.file('/paths.../some.scss', result => {
+    // done..
+  }, error => {
+    // fail..
+  })
+
+  // or
+  SCSS.data('$w: 100px; div { width: $w; }', result => {
     // done..
   }, error => {
     // fail..
@@ -79,8 +86,8 @@ npm install @oawu/scss
 
 ```javascript
 
-  const Scss = require('@oawu/scss')
-  Scss.contents = "%-tmp {}"
+  const SCSS = require('@oawu/scss')
+  SCSS.contents = "%-tmp {}"
 
 ```
 

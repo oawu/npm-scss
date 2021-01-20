@@ -8,7 +8,7 @@
 const Scss = require('./index.js')
 const FileSystem = require('fs')
 
-Scss('test/test.scss', result => {
+Scss.file('test/test.scss', result => {
   console.error(result.stats.duration);
 
   FileSystem.writeFile("test/test.css", result.css, 'utf8', error => {
