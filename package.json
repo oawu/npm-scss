@@ -1,7 +1,7 @@
 {
   "name": "@oawu/scss",
   "version": "1.0.2",
-  "description": "OA's Node scss 轉換工具 📝",
+  "description": "📝 看我把 scss 變成 css！",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
