@@ -8,6 +8,7 @@
 const Scss = require('./index.js')
 const FileSystem = require('fs')
 
+Scss.minify = false
 Scss.file('test/test.scss', (error, result) => {
   if (error) {
     console.error('info：' + error.info);
@@ -19,7 +20,7 @@ Scss.file('test/test.scss', (error, result) => {
   
   console.error(result.stats.duration);
 
-  FileSystem.writeFile("test/test.css", result.css.toString(), 'utf8', error => {
+  FileSystem.writeFile("test/test.css", result.utf8, 'utf8', error => {
     console.error('ok');
   })
 })

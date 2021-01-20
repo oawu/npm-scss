@@ -13,12 +13,16 @@ const files      = new Map()
 function Scss(type, done) {
   return sass.render({ ...type, outputStyle: Scss.minify ? 'compressed' : 'expanded', importer: Scss.importer }, (error, result) => {
     if (!done) return
-    else return error && (error.info = error.formatted.split("\n").shift()), done(error, result)
+
+    error && (error.info = error.formatted.split("\n").shift())
+    result.utf8 = (Scss.minify ? '@charset "UTF-8";' + "\n" : '') + result.css.toString()
+
+    return done(error, result)
   })
 }
 
-Scss.minify = true
 Scss.key    = '@'
+Scss.minify = true
 
 try { Scss.contents = FileSystem.readFileSync(__dirname + Path.sep + 'Libs' + Path.sep + 'Lalilo.scss', 'utf8') }
 catch (_) { Scss.contents = null }
