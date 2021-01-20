@@ -13,7 +13,7 @@ const files      = new Map()
 function Scss(type, done, fail) {
   const outputStyle = Scss.minify ? 'compressed' : 'expanded'
 
-  const finish = (error, result) => error ? fail(error) : done(result)
+  const finish = (error, result) => error ? fail && fail(error) : done && done(result)
 
   return sass.render({ ...type, outputStyle, importer: Scss.importer }, finish)
 }
@@ -50,7 +50,7 @@ Scss.importer = (url, file, done) => {
       : new Error('@import 的 ' + url + ' 不存在！')
 }
 
-Scss.file = file => Scss({ file })
-Scss.data = data => Scss({ data })
+Scss.file = (file, done, fail) => Scss({ file }, done, fail)
+Scss.data = (data, done, fail) => Scss({ data }, done, fail)
 
 module.exports = Scss
