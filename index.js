@@ -21,7 +21,7 @@ function Scss(file, done, fail) {
 Scss.minify = true
 Scss.key    = '@'
 
-try { Scss.contents = FileSystem.readFileSync(__dirname + Path.sep + 'Libs' + Path.sep + 'Quick.scss', 'utf8') }
+try { Scss.contents = FileSystem.readFileSync(__dirname + Path.sep + 'Libs' + Path.sep + 'Lalilo.scss', 'utf8') }
 catch (_) { Scss.contents = null }
 
 Scss.importer = (url, file, done) => {
@@ -38,7 +38,7 @@ Scss.importer = (url, file, done) => {
     if (file = __dirname + Path.sep + 'Libs' + Path.sep, tokens.length)
       file += tokens.join(Path.sep)
     else
-      file += '_'
+      file += '@'
   else
     file = Path.dirname(file) + Path.sep + url
 

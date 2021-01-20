@@ -1,11 +1,12 @@
 
 @import "Lalilo";
+@import "@/CSS3/Font/Face";
 
-// @include font-face("icon", font-files(
-//   "icomoon/fonts/icomoon.eot",
-//   "icomoon/fonts/icomoon.woff",
-//   "icomoon/fonts/icomoon.ttf",
-//   "icomoon/fonts/icomoon.svg"));
+@include font-face("icon", font-files(
+  "icomoon/fonts/icomoon.eot",
+  "icomoon/fonts/icomoon.woff",
+  "icomoon/fonts/icomoon.ttf",
+  "icomoon/fonts/icomoon.svg"));
 
 a {
   @include animation(rotate 5s linear);
