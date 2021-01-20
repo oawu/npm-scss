@@ -13,7 +13,7 @@ const files      = new Map()
 function Scss(type, done) {
   return sass.render({ ...type, outputStyle: Scss.minify ? 'compressed' : 'expanded', importer: Scss.importer }, (error, result) => {
     if (!done) return
-    else return error && (error.message = error.formatted.split("\n").shift().trim()), done(error, result)
+    else return error && (error.info = error.formatted.split("\n").shift()), done(error, result)
   })
 }
 

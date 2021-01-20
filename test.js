@@ -10,11 +10,10 @@ const FileSystem = require('fs')
 
 Scss.file('test/test.scss', (error, result) => {
   if (error) {
-    console.error(error.message);
     console.error('info：' + error.info);
-    // console.error('lines：' + error.lines);
     console.error('line：' + error.line);
     console.error('column：' + error.column);
+    console.error('message：' + error.message);
     return
   }
   
