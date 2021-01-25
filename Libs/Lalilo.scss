@@ -213,6 +213,10 @@
   @include prefix(animation, compact($animations...), -o, -ms, -moz, -webkit, official);
 }
 
+@mixin animation-delay($delays...) {
+  @include prefix(animation-delay, compact($delays...), -o, -ms, -moz, -webkit, official);
+}
+
 @mixin perspective($p) {
   @include prefix(perspective, $p, -o, -ms, -moz, -webkit, official);
 }
