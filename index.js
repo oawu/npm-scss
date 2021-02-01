@@ -36,7 +36,7 @@ Scss.importer = (url, file, done) => {
 
   if (!tokens.length)
     return { contents }
-  
+
   if (tokens.shift() == Scss.key)
     if (file = __dirname + Path.sep + 'Libs' + Path.sep, tokens.length)
       file += tokens.join(Path.sep)
@@ -45,12 +45,16 @@ Scss.importer = (url, file, done) => {
   else
     file = Path.dirname(file) + Path.sep + url
 
-  if (Path.extname(file) !== '.scss' && (file += '.scss'), files.includes(file))
+  if (Path.extname(file) !== '.scss')
+    file += '.scss'
+
+  if (files.includes(file))
     return { file }
-  else if (!FileSystem.existsSync(file))
+
+  if (!FileSystem.existsSync(file))
     return new Error('@import 的 "' + url + '" 不存在！')
-  else
-    return files.push(file), { file }
+
+  return files.push(file), { file }
 }
 
 Scss.file = (file, done) => Scss({ file }, done)
