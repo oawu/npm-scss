@@ -7,6 +7,6 @@
 
 @import "../../Common";
 
-@mixin apply-origin($origin) {
-  @include prefix(transform-origin, $origin, -o, -ms, -moz, -webkit, official);
+@mixin transform-origin($originX: 50%, $originY: 50%) {
+  @include prefix(transform-origin, if($originX, $originX, 50%) if($originY, $originY, 50%), -o, -ms, -moz, -webkit, official);
 }

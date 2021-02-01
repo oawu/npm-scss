@@ -225,6 +225,10 @@
   @include prefix(transform, $transform, -o, -ms, -moz, -webkit, official);
 }
 
+@mixin transform-origin($originX: 50%, $originY: 50%) {
+  @include prefix(transform-origin, if($originX, $originX, 50%) if($originY, $originY, 50%), -o, -ms, -moz, -webkit, official);
+}
+
 @mixin translateX($x, $perspective: false) {
   $trans: translateX($x);
   @include transform(if($perspective, perspective($perspective) $trans, $trans));
