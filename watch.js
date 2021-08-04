@@ -22,7 +22,7 @@ const { file: SCSS } = require('./scss.js')
 const notify         = require('./notify.js')
 
 const { title, done, fail } = Cli
-const { clean, exists, access, println } = Helper
+const { clean, exists, access, println, mkdir } = Helper
 
 const cmdColor = (desc, action = null) => desc.lightGray.dim + (action !== null ? '：'.dim + action.lightGray.dim.italic : '')
 
