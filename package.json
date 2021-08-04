@@ -1,6 +1,6 @@
 {
   "name": "@oawu/scss",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "📝 看我把 scss 變成 css！",
   "main": "index.js",
   "scripts": {
