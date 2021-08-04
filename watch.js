@@ -66,7 +66,7 @@ const ScssQ = {
 
           exists(cssFilePath) || mkdir(cssFilePath, true)
           exists(cssFilePath)
-            ? FileSystem.writeFile(cssFile, result.utf8, error => error ? this.fail(['寫入 css 失敗', '檔案路徑：' + cssSrc]) : this.done())
+            ? FileSystem.writeFile(cssFile, result.utf8.replace(/^\uFEFF/gm, ""), error => error ? this.fail(['寫入 css 失敗', '檔案路徑：' + cssSrc]) : this.done())
             : this.fail(['建立 css 子目錄失敗', '檔案路徑：' + Path.relative(rootPath, cssFilePath)])
         })
     } else {
