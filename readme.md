@@ -60,10 +60,10 @@ npm install @oawu/scss
 
 ### 特殊功能
 
-可以使用 `@import "Lalilo";` 來快速使用 [Lalilo](https://github.com/comdan66/Lalilo) 框架常用功能，其引入的功能可以參考 [`Lalilo.scss`](https://github.com/comdan66/node-Scss/blob/master/Libs/Lalilo.scss) 此檔案。
+可以使用 `@import "*";` 或 `@import "Lalilo";` 來快速使用 [Lalilo](https://github.com/comdan66/Lalilo) 框架常用功能，其引入的功能可以參考 [`Lalilo.scss`](https://github.com/comdan66/node-Scss/blob/master/Libs/Lalilo.scss) 此檔案。
 
 ```scss
-  @import "Lalilo";
+  @import "*";
 
   * {
     &, &:after, &:before {
@@ -81,10 +81,8 @@ npm install @oawu/scss
 以下範例為改變 `@import "Lalilo";` 後所引入的內容：
 
 ```javascript
-
   const SCSS = require('@oawu/scss')
   SCSS.contents = "%-tmp {}"
-
 ```
 
 ```scss
@@ -94,6 +92,44 @@ npm install @oawu/scss
     @extend %-tmp;
   }
 ```
+
+### 自動編譯
+
+資料結構如下，其實可以使用 `watch.js` 來自動編譯 scss 檔案。
+
+```
+project/
+  + css/
+  + scss/
+    + index.scss
+  + watch.js
+```
+
+``` scss
+  // index.scss
+  @import "*";
+
+  a {
+    @include border-radius(10px);
+    background-color: rgba(0, 0, 255, 0.2);
+    border: 1px solid rgba(255, 0, 0, .3);
+  }
+```
+
+``` javascript
+  // watch.js
+  const { watch } = require('@oawu/scss')
+
+  watch
+    .scssDir('scss')
+    .cssDir('css')
+    .start()
+```
+
+終端在 **專案目錄** 下，執行 `node watch.js` 即可啟動自動編譯。
+
+`scssDir` 與 `cssDir` 兩個目錄可以擺放與 `watch.js` 相對的路徑目錄，亦可擺放絕對目錄。
+
 
 ## 參考 
 * compass 功能參考:
