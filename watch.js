@@ -8,6 +8,7 @@
 const Path       = require('path')
 const FileSystem = require('fs')
 const Chokidar   = require('chokidar')
+const Process    = require('child_process')
 
 const Xterm  = require('@oawu/xterm')
 const Cli    = require('@oawu/cli-progress')
@@ -126,6 +127,10 @@ const Watch = {
         exists(this._dir.css) && access(this._dir.css, FileSystem.constants.R_OK || FileSystem.constants.W_OK)
           ? next(done())
           : fail(null, 'CSS 目錄不存在或者沒有讀寫權限', '目錄：' + this._dir.css)    
+      })
+      .enqueue(next => {
+        title('清空 CSS 目錄', cmdColor('執行指令', 'rm -rf ' + this._dir.css + '*'))
+        Process.exec('rm -rf ' + this._dir.css + '*', error => error ? fail(null, error) : next(done()))
       })
       .enqueue(next => {
         println("\n" + ' 【開始轉譯】'.yellow)
