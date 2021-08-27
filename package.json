@@ -27,10 +27,10 @@
   },
   "homepage": "https://github.com/comdan66/node-Scss#readme",
   "dependencies": {
-    "@oawu/cli-progress": "^1.0.13",
+    "@oawu/cli-progress": "^1.0.14",
     "@oawu/helper": "^1.0.3",
     "@oawu/queue": "^1.0.10",
-    "@oawu/xterm": "^1.0.5",
+    "@oawu/xterm": "^1.0.6",
     "chokidar": "^3.5.2",
     "node-notifier": "^10.0.0",
     "sass": "^1.32.4"
