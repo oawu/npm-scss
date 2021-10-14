@@ -57,7 +57,7 @@ const ScssQ = {
       const name = Path.basename(fileName, '.scss') + '.css'
 
       const cssFilePath = this.cssDir + dirs.join(Path.sep)
-      const cssFile = cssFilePath + name
+      const cssFile = cssFilePath + name + Path.sep
         
       return type < 0
         ? title('移除 SCSS', `scss 路徑：${scssFile}`.dim, `css 路徑：${cssFile}`.dim) && FileSystem.exists(cssFile, exists => exists ? FileSystem.unlink(cssFile, error => error ? this.fail([`檔案路徑：${cssFile}`, `錯誤原因：${error.message}`]) : FileSystem.exists(cssFile, exists => exists ? this.fail([`檔案路徑：${cssFile}`, '錯誤原因：刪除失敗！']) : this.done())) : this.done())
