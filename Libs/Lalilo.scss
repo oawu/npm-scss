@@ -103,6 +103,10 @@
   }
 }
 
+@mixin backdrop-filter($value) {
+  @include prefix(backdrop-filter, $value, not(-o), not(-ms), -moz, -webkit, official);
+}
+
 @mixin box-sizing($bs) {
   @include prefix(box-sizing, unquote($bs), not(-o), not(-ms), -moz, -webkit, official);
 }
