@@ -1,6 +1,6 @@
 {
   "name": "@oawu/scss",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "📝 看我把 scss 變成 css！",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/comdan66/node-Scss.git"
+    "url": "git+https://github.com/oawu/npm-scss.git"
   },
   "keywords": [
     "scss",
@@ -18,19 +18,19 @@
   ],
   "author": {
     "name": "OA Wu",
-    "email": "comdan66@gmail.com",
+    "email": "oawu.tw@gmail.com",
     "url": "https://www.ioa.tw"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/comdan66/node-Scss/issues"
+    "url": "https://github.com/oawu/npm-scss/issues"
   },
-  "homepage": "https://github.com/comdan66/node-Scss#readme",
+  "homepage": "https://github.com/oawu/npm-scss#readme",
   "dependencies": {
-    "@oawu/cli-progress": "^1.0.14",
-    "@oawu/helper": "^1.0.3",
-    "@oawu/queue": "^1.0.10",
-    "@oawu/xterm": "^1.0.6",
+    "@oawu/cli-progress": "^1.0.15",
+    "@oawu/helper": "^1.0.5",
+    "@oawu/queue": "^1.0.11",
+    "@oawu/xterm": "^1.0.7",
     "chokidar": "^3.5.2",
     "node-notifier": "^10.0.0",
     "sass": "^1.32.4"

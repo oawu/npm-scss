@@ -34,7 +34,7 @@ npm install @oawu/scss
 
 ## 其他功能
 
-可以使用 `@import "@";` 來使用此套件的相關功能，其參考目錄為 [Libs](https://github.com/comdan66/node-Scss/tree/master/Libs)
+可以使用 `@import "@";` 來使用此套件的相關功能，其參考目錄為 [Libs](https://github.com/oawu/npm-scss/tree/master/Libs)
 
 ```scss
   @import "@";
@@ -60,7 +60,7 @@ npm install @oawu/scss
 
 ### 特殊功能
 
-可以使用 `@import "*";` 或 `@import "Lalilo";` 來快速使用 [Lalilo](https://github.com/comdan66/Lalilo) 框架常用功能，其引入的功能可以參考 [`Lalilo.scss`](https://github.com/comdan66/node-Scss/blob/master/Libs/Lalilo.scss) 此檔案。
+可以使用 `@import "*";` 或 `@import "Lalilo";` 來快速使用 [Lalilo](https://github.com/oawu/Lalilo) 框架常用功能，其引入的功能可以參考 [`Lalilo.scss`](https://github.com/oawu/npm-scss/blob/master/Libs/Lalilo.scss) 此檔案。
 
 ```scss
   @import "*";
@@ -76,7 +76,7 @@ npm install @oawu/scss
 
 由於 `@import "Lalilo";` 為直接指定的快取檔案，主要目的是為了加快編譯速度，當然您可以自定義引入的檔案內容。
 
-預設的快取檔案為 [`Lalilo.scss`](https://github.com/comdan66/node-Scss/blob/master/Libs/Lalilo.scss)，但可以使用 `Scss.contents` 來改變快取檔案內容。
+預設的快取檔案為 [`Lalilo.scss`](https://github.com/oawu/npm-scss/blob/master/Libs/Lalilo.scss)，但可以使用 `Scss.contents` 來改變快取檔案內容。
 
 以下範例為改變 `@import "Lalilo";` 後所引入的內容：
 
