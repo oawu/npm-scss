@@ -5,11 +5,8 @@
 // @link        https://www.ioa.tw/
 //
 
-@use "sass:meta";
-
-@mixin opacity($opacity) {
-  @if meta.type-of($opacity) == number {
-    filter: unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=#{round($opacity * 100)})");
+@mixin dark() {
+  @media (prefers-color-scheme: dark) {
+    @content;
   }
-  opacity: $opacity;
 }

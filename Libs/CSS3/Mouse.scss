@@ -1,0 +1,12 @@
+//
+// @author      OA Wu <oawu.tw@gmail.com>
+// @copyright   Copyright (c) 2015 - 2022, @oawu/scss
+// @license     http://opensource.org/licenses/MIT  MIT License
+// @link        https://www.ioa.tw/
+//
+
+@mixin hover() {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
