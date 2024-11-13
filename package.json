@@ -1,6 +1,6 @@
 {
   "name": "@oawu/scss",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "📝 看我把 scss 變成 css！",
   "main": "index.js",
   "scripts": {
@@ -33,6 +33,6 @@
     "@oawu/xterm": "^1.0.7",
     "chokidar": "^3.5.2",
     "node-notifier": "^10.0.0",
-    "sass": "^1.32.4"
+    "sass": "1.32.4"
   }
 }
