@@ -1,3 +1,9 @@
+/**
+ * @author      OA Wu <oawu.tw@gmail.com>
+ * @copyright   Copyright (c) 2015 - 2025, @oawu/scss
+ * @license     http://opensource.org/licenses/MIT  MIT License
+ * @link        https://www.ioa.tw/
+ */
 
 @import "Lalilo";
 @import "@/CSS3/Font/Face";
@@ -44,7 +50,7 @@ body {
   font-size: medium;
   text-align: center;
   font-family: "微軟正黑體", "Open sans", "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
-  
+
   // 文字染色，背景色、文字色
   @include selection(rgba(120, 186, 255, 1.00), rgba(255, 255, 255, 1));
 

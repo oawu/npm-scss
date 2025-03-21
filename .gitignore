@@ -1,4 +1,10 @@
 /node_modules/*
 /package-lock.json
 /npm-debug.log
+/sftp-config.json
+
 /test/*.css
+
+# 系統檔案
+Thumbs.db
+.DS_Store

@@ -27,12 +27,7 @@
   },
   "homepage": "https://github.com/oawu/npm-scss#readme",
   "dependencies": {
-    "@oawu/cli-progress": "^1.0.15",
-    "@oawu/helper": "^1.0.5",
-    "@oawu/queue": "^1.0.11",
-    "@oawu/xterm": "^1.0.7",
-    "chokidar": "^3.5.2",
-    "node-notifier": "^10.0.0",
+    "@oawu/helper": "^2.0.9",
     "sass": "1.77.0"
   }
 }
