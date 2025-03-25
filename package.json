@@ -1,6 +1,6 @@
 {
   "name": "@oawu/scss",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "📝 看我把 scss 變成 css！",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/oawu/npm-scss#readme",
   "dependencies": {
-    "@oawu/helper": "^3.0.1",
+    "@oawu/helper": "^3.0.2",
     "sass": "1.77.0"
   }
 }
