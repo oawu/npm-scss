@@ -12,8 +12,8 @@ const Scss = require('./index.js')
 
 Scss.minify = false
 
-const src = 'test/test.scss'
-const desc = 'test/test.css'
+const src = 'Tests/test.scss'
+const desc = 'Tests/test.css'
 
 Scss.file(src, result => {
   if (T.err(result)) {
@@ -25,21 +25,21 @@ Scss.file(src, result => {
   }
   console.error(result.stats.duration)
 
-  ;(async src => {
-    const result = await Scss.file(src)
+    ; (async src => {
+      const result = await Scss.file(src)
 
-    if (T.err(result)) {
-      console.error('info：' + result.info)
-      console.error('line：' + result.line)
-      console.error('column：' + result.column)
-      console.error('message：' + result.message)
-      return
-    }
+      if (T.err(result)) {
+        console.error('info：' + result.info)
+        console.error('line：' + result.line)
+        console.error('column：' + result.column)
+        console.error('message：' + result.message)
+        return
+      }
 
-    console.error(result.stats.duration)
+      console.error(result.stats.duration)
 
-    await fs.writeFile(desc, result.utf8, { encoding: 'utf8' })
-    console.error('ok')
-  })(src).catch(console.error)
+      await fs.writeFile(desc, result.utf8, { encoding: 'utf8' })
+      console.error('ok')
+    })(src).catch(console.error)
 })
 

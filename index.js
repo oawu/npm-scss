@@ -11,12 +11,12 @@ const fs = require('fs/promises')
 
 const files = []
 
-const { tryIgnore, closureOrPromise, Type: T } = require('@oawu/helper')
+const { tryFunc, promisify, Type: T } = require('@oawu/helper')
 
 let _contents = null
 
 const Scss = function (type, done = null) {
-  return closureOrPromise(done, done => _sass.render({
+  return promisify(done, done => _sass.render({
     importer: (url, file, done) => {
       (async (url, file) => {
         if (_contents === null) {
@@ -53,7 +53,7 @@ const Scss = function (type, done = null) {
           return { file }
         }
 
-        const access = await tryIgnore(fs.access(file, fs.constants.R_OK))
+        const access = await tryFunc(fs.access(file, fs.constants.R_OK))
         if (T.err(access)) {
           throw new Error(`@import 的 "${url}" 沒有訪問權限。`, { cause: access })
         }

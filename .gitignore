@@ -3,7 +3,7 @@
 /npm-debug.log
 /sftp-config.json
 
-/test/*.css
+/Tests/*.css
 
 # 系統檔案
 Thumbs.db
